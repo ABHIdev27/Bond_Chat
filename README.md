@@ -1,8 +1,6 @@
-# ✨ Full Stack Realtime Chat App ✨
+# ✨ BondChat ✨
 
-![Demo App](/frontend/public/screenshot-for-readme.png)
 
-[Video Tutorial on Youtube](https://youtu.be/ntKkVrQqBYY)
 
 Highlights:
 
