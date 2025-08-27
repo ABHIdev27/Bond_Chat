@@ -35,25 +35,22 @@ const SignUpPage = () => {
   };
 
   return (
-    <div className="min-h-screen grid lg:grid-cols-2">
-      {/* left side */}
-      <div className="flex flex-col justify-center items-center p-6 sm:p-12">
-        <div className="w-full max-w-md space-y-8">
-          {/* LOGO */}
-          <div className="text-center mb-8">
-            <div className="flex flex-col items-center gap-2 group">
-              <div
-                className="size-12 rounded-xl bg-primary/10 flex items-center justify-center 
-              group-hover:bg-primary/20 transition-colors"
-              >
-                <MessageSquare className="size-6 text-primary" />
+    <div className="h-screen w-full flex items-center justify-center bg-base-200 dark:bg-base-100">
+      {/* Centered Form */}
+      <div className="flex flex-col justify-center items-center p-8 sm:p-16 w-full max-w-xl">
+        <div className="w-full bg-white/70 dark:bg-base-200/80 backdrop-blur-xl rounded-3xl shadow-2xl p-12 space-y-6 border border-white/30">
+          {/* Logo & Quote */}
+          <div className="text-center mb-6">
+            <div className="flex flex-col items-center gap-4 group">
+              <div className="w-20 h-20 rounded-2xl bg-gradient-to-tr from-primary/80 to-pink-400 flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
+                <MessageSquare className="w-10 h-10 text-white drop-shadow" />
               </div>
-              <h1 className="text-2xl font-bold mt-2">Create Account</h1>
-              <p className="text-base-content/60">Get started with your free account</p>
+              <h1 className="text-4xl font-extrabold mt-2 tracking-tight bg-gradient-to-r from-primary to-pink-400 text-transparent bg-clip-text">Create Account</h1>
+              <p className="text-base-content/60 text-base italic max-w-md mx-auto">Get started with your free account</p>
             </div>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-5">
             <div className="form-control">
               <label className="label">
                 <span className="label-text font-medium">Full Name</span>
@@ -119,10 +116,10 @@ const SignUpPage = () => {
               </div>
             </div>
 
-            <button type="submit" className="btn btn-primary w-full" disabled={isSigningUp}>
+            <button type="submit" className="btn btn-primary w-full shadow-lg hover:scale-105 transition-transform font-bold text-xl py-4" disabled={isSigningUp}>
               {isSigningUp ? (
                 <>
-                  <Loader2 className="size-5 animate-spin" />
+                  <Loader2 className="h-5 w-5 animate-spin" />
                   Loading...
                 </>
               ) : (
@@ -131,10 +128,10 @@ const SignUpPage = () => {
             </button>
           </form>
 
-          <div className="text-center">
-            <p className="text-base-content/60">
+          <div className="text-center pt-2">
+            <p className="text-base-content/60 text-base">
               Already have an account?{" "}
-              <Link to="/login" className="link link-primary">
+              <Link to="/login" className="link link-primary font-semibold text-base">
                 Sign in
               </Link>
             </p>
@@ -142,12 +139,7 @@ const SignUpPage = () => {
         </div>
       </div>
 
-      {/* right side */}
-
-      <AuthImagePattern
-        title="Join our community"
-        subtitle="Connect with friends, share moments, and stay in touch with your loved ones."
-      />
+     
     </div>
   );
 };
