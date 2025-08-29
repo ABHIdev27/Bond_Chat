@@ -28,6 +28,9 @@ app.use(
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 
+// Serve public folder statically for profile pictures
+app.use("/profilepics", express.static(path.join(__dirname, "../public/profilepics")));
+
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../frontend/dist")));
 

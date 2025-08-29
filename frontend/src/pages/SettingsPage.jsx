@@ -31,9 +31,9 @@ const SettingsPage = () => {
   const bubbleClass = bubbleStyle === "rounded" ? "rounded-xl" : "rounded-none";
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-base-200 dark:bg-base-100 overflow-auto">
+  <div className="min-h-screen w-full flex items-center justify-center bg-base-200 dark:bg-base-100 overflow-auto pt-16">
       <div className="flex flex-col justify-center items-center p-2 sm:p-6 md:p-10 w-full max-w-screen-lg">
-        <div className="w-full bg-white dark:bg-base-200 rounded-3xl shadow-2xl p-2 sm:p-6 md:p-10 space-y-8 border border-base-300 max-w-full">
+  <div className="w-full bg-white dark:bg-base-200 rounded-3xl shadow-2xl p-2 sm:p-6 md:p-10 space-y-8 border border-base-300 max-w-full animate-fade-in-up">
           <div className="text-center mb-6">
             <h2 className="text-3xl font-extrabold tracking-tight text-primary">Settings</h2>
             <p className="text-base-content text-base mt-2">Personalize your chat experience</p>
@@ -55,6 +55,7 @@ const SettingsPage = () => {
                       ${theme === t ? "bg-base-200" : "hover:bg-base-200/50"}
                     `}
                     onClick={() => setTheme(t)}
+                    title={`Switch to ${t} theme`}
                   >
                     <div className="relative h-8 w-full rounded-md overflow-hidden" data-theme={t}>
                       <div className="absolute inset-0 grid grid-cols-4 gap-px p-1">
@@ -115,7 +116,7 @@ const SettingsPage = () => {
                 onChange={e => setFontFamily(e.target.value)}
               >
                 {FONT_FAMILIES.map(f => (
-                  <option key={f.value} value={f.value}>{f.label}</option>
+                  <option key={f.value} value={f.value} title={`Use ${f.label} font`}>{f.label}</option>
                 ))}
               </select>
             </div>
@@ -154,7 +155,7 @@ const SettingsPage = () => {
           {/* Preview Section */}
           <div>
             <h3 className="text-lg font-semibold mb-3">Preview</h3>
-            <div className="rounded-xl border border-base-300 overflow-x-auto bg-base-100 shadow-lg">
+            <div className="rounded-xl border border-base-300 overflow-x-auto bg-base-100 shadow-lg animate-fade-in-up">
               <div className="p-2 sm:p-4 bg-base-200">
                 <div className="w-full max-w-lg mx-auto">
                   {/* Mock Chat UI */}

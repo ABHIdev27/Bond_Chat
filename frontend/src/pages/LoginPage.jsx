@@ -21,7 +21,7 @@ const LoginPage = () => {
     <div className="h-screen w-full flex items-center justify-center bg-base-200 dark:bg-base-100">
       {/* Centered Form */}
       <div className="flex flex-col justify-center items-center p-8 sm:p-16 w-full max-w-xl">
-        <div className="w-full bg-white/70 dark:bg-base-200/80 backdrop-blur-xl rounded-3xl shadow-2xl p-14 space-y-10 border border-white/30">
+        <div className="w-full bg-white/70 dark:bg-base-200/80 backdrop-blur-xl rounded-3xl shadow-2xl p-14 space-y-10 border border-white/30 animate-fade-in-up">
           {/* Logo & Quote */}
           <div className="text-center mb-10">
             <div className="flex flex-col items-center gap-4 group">
