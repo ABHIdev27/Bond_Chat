@@ -2,11 +2,8 @@ import express from "express";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-
 import path from "path";
-
 import { connectDB } from "./lib/db.js";
-
 import authRoutes from "./routes/auth.route.js";
 import messageRoutes from "./routes/message.route.js";
 import { app, server } from "./lib/socket.js";
@@ -16,6 +13,7 @@ dotenv.config();
 const PORT = process.env.PORT;
 const __dirname = path.resolve();
 
+// Middlewares
 app.use(express.json());
 app.use(cookieParser());
 app.use(
@@ -25,12 +23,15 @@ app.use(
   })
 );
 
+// API routes
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 
-// Serve public folder statically for profile pictures
-app.use("/profilepics", express.static(path.join(__dirname, "../public/profilepics")));
+// Serve profile pictures from env path
+const profilePicsDir = path.join(__dirname, process.env.PROFILE_PICS_DIR);
+app.use("/profilepics", express.static(profilePicsDir));
 
+// Serve frontend in production
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
@@ -39,7 +40,14 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-server.listen(PORT, () => {
-  console.log("server is running on PORT:" + PORT);
-  connectDB();
-});
+// Start server only after DB connection
+connectDB()
+  .then(() => {
+    server.listen(PORT, () => {
+      console.log(`✅ Server is running on PORT: ${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.error("❌ Failed to connect to DB:", err);
+    process.exit(1);
+  });

@@ -1,9 +1,14 @@
 import multer from "multer";
 import path from "path";
 import fs from "fs";
+import dotenv from "dotenv";
+
+dotenv.config(); // load .env variables
+
+// Get directory from env
+const profilePicsDir = path.join(process.cwd(), process.env.PROFILE_PICS_DIR);
 
 // Ensure the profilepics directory exists
-const profilePicsDir = path.join(process.cwd(), "./public/profilepics");
 if (!fs.existsSync(profilePicsDir)) {
   fs.mkdirSync(profilePicsDir, { recursive: true });
 }
