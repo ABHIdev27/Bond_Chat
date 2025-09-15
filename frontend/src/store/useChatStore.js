@@ -43,6 +43,22 @@ export const useChatStore = create((set, get) => ({
     }
   },
 
+  addReaction: async (messageId, emoji) => {
+    const { messages } = get();
+    try {
+      const res = await axiosInstance.post("/messages/reaction", { messageId, emoji });
+      const updatedReactions = res.data.reactions;
+
+      // Update the reactions for the message in state
+      const updatedMessages = messages.map((msg) =>
+        msg._id === messageId ? { ...msg, reactions: updatedReactions } : msg
+      );
+      set({ messages: updatedMessages });
+    } catch (error) {
+      toast.error(error.response.data.message);
+    }
+  },
+
   subscribeToMessages: () => {
     const { selectedUser } = get();
     if (!selectedUser) return;
@@ -56,6 +72,13 @@ export const useChatStore = create((set, get) => ({
       set({
         messages: [...get().messages, newMessage],
       });
+    });
+
+    socket.on("reactionUpdated", ({ messageId, reactions }) => {
+      const updatedMessages = get().messages.map((msg) =>
+        msg._id === messageId ? { ...msg, reactions } : msg
+      );
+      set({ messages: updatedMessages });
     });
   },
 
